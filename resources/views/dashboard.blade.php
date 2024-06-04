@@ -9,7 +9,35 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+                    <h3 class="font-bold text-2xl">{{ __('Welcome to the Housing Complaint Dashboard') }}</h3>
+                    <p class="text-lg">
+                        {{ __('This dashboard allows you to manage and track complaints from residents.') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="font-bold text-2xl">{{ __('Recent Complaints') }}</h3>
+                    <ul>
+                        <!-- Add recent complaints list here -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <h3 class="font-bold text-2xl">{{ __('Complaint Status') }}</h3>
+                    <ul>
+                        <!-- Add complaint status list here -->
+                    </ul>
                 </div>
             </div>
         </div>
