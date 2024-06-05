@@ -16,5 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
+Route::get('/cek1', function() {
+    return ('<h1>Mengecek</h1>');
+})->middleware('auth', 'verified');
 require __DIR__.'/auth.php';
