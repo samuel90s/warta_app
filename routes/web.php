@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\cekController;
+use App\Http\Controllers\PerumahaanController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Perumahaan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,3 +26,8 @@ Route::get('/cek1', function() {
 Route::get('/cek2', [cekController::class,'index'])->middleware(['auth',
 'verified']);
 require __DIR__.'/auth.php';
+
+
+Route::controller(PerumahaanController::class)->prefix('perumahaan')->group(function(){
+    Route::get('','index')->name('perumhaan');
+});
