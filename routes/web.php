@@ -7,7 +7,7 @@ use App\Models\Perumahaan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('index_guest');
 });
 
 Route::get('/dashboard', function () {
