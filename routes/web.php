@@ -3,16 +3,29 @@
 use App\Http\Controllers\cekController;
 use App\Http\Controllers\PerumahaanController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 use App\Models\Perumahaan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index_guest');
+    return view('index');
 });
+
+Route::get('admin', function () {
+    return view('admin.index');
+})->middleware(['auth', 'verified','admin'])->name('admin');
+
+Route::get('rtrw', function () {
+    return view('rtrw.index');
+})->middleware(['auth', 'verified','rtrw'])->name('rtrw');
+
+Route::get('petugas', function () {
+    return view('petugas.index');
+})->middleware(['auth', 'verified','petugas'])->name('petugas');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','warga'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,3 +44,7 @@ require __DIR__.'/auth.php';
 Route::controller(PerumahaanController::class)->prefix('perumahaan')->group(function(){
     Route::get('','index')->name('perumhaan');
 });
+
+// Route::controller(AdminController::class)->prefix('Admin')->group(function() {
+//     Route::get('','index')->name('admin');
+// });

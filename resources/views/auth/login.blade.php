@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email & Username Address -->
+        <!-- Email or Username Address -->
         <div>
             <x-input-label for="id_user" :value="__('Email or Username')" />
             <x-text-input id="id_user" class="block mt-1 w-full" type="text" name="id_user" :value="old('id_user')" required
@@ -16,10 +16,8 @@
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required
                 autocomplete="current-password" />
-
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -45,4 +43,13 @@
             </x-primary-button>
         </div>
     </form>
+
+    <div class="mt-4 text-center">
+        <p class="text-sm text-gray-600">
+            {{ __("Don't have an account?") }}
+            <a class="text-indigo-600 hover:text-indigo-900" href="{{ route('register') }}">
+                {{ __('Register here') }}
+            </a>
+        </p>
+    </div>
 </x-guest-layout>
