@@ -2,18 +2,19 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
+        <div class="sidebar-brand-icon">
+            <img src="{{ asset('images/logo_toa.png') }}" class="img-fluid" alt="Logo">
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">
+            <span style="color: rgb(194, 194, 194);">Lapor</span><span style="color: red;">mas</span>
+        </div>
     </a>
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ route('admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -23,9 +24,27 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Admin
     </div>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item active">
+        <a class="nav-link" href="{{ route('perumahan.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Perumahan</span>
+        </a>
+    </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('perumahan.index') }}">
+            <i class="fas fa-fw fa-table"></i>
+            <span>RT/RW</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('petugas.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Petugas Keamanan</span>
+        </a>
+    </li>
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -41,12 +60,7 @@
             </div>
         </div>
     </li>
-    <!-- Nav Item - Tables -->
-    <li class="nav-item active">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
-    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -57,3 +71,13 @@
     </div>
 
 </ul>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Add "active" class to the clicked sidebar item
+        $('.nav-item').click(function() {
+            $('.nav-item').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+</script>
