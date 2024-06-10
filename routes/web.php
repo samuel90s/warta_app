@@ -14,6 +14,9 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified','admin'])->name('admin');
+Route::get('dashboardv2', function () {
+    return view('perumahaan.apalah');
+})->middleware(['auth', 'verified','admin'])->name('dashboard');
 
 Route::get('rtrw', function () {
     return view('rtrw.index');
@@ -48,3 +51,7 @@ Route::controller(PerumahaanController::class)->prefix('perumahaan')->group(func
 // Route::controller(AdminController::class)->prefix('Admin')->group(function() {
 //     Route::get('','index')->name('admin');
 // });
+
+Route::get('apalah', function(){
+    return view('perumahaan.apalah');
+});
