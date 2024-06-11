@@ -26,10 +26,10 @@
     <div class="sidebar-heading">
         Admin
     </div>
-    <!-- Nav Item - Tables -->
+    <!-- admin akses -->
     <li class="nav-item active">
         <a class="nav-link" href="{{ route('perumahan.index') }}">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-fw fa-house-user"></i>
             <span>Perumahan</span>
         </a>
     </li>
@@ -37,29 +37,45 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ route('perumahan.index') }}">
             <i class="fas fa-fw fa-table"></i>
-            <span>RT/RW</span></a>
+            <span>Ketua RW</span></a>
     </li>
+    {{-- admin akses end --}}
+
+    {{-- ketua RW akses --}}
     <li class="nav-item">
         <a class="nav-link" href="{{ route('petugas.index') }}">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-fw fa-address-card"></i>
             <span>Petugas Keamanan</span>
         </a>
     </li>
-    <!-- Nav Item - Pages Collapse Menu -->
+
+    {{-- end ketua rt akses --}}
+
+
+    {{-- petugas keamanan akses --}}
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Components</span>
+        <a class="nav-link" href="{{ route('petugas.index') }}">
+            <i class="fas fa-fw fa-flag"></i>
+            <span>Laporan Warga</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Custom Components:</h6>
-                <a class="collapse-item" href="buttons.html">Buttons</a>
-                <a class="collapse-item" href="cards.html">Cards</a>
-            </div>
-        </div>
     </li>
+
+    {{-- end petugas keamanan akses --}}
+    {{-- start warga akses --}}
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('petugas.index') }}">
+            <i class="fas fa-fw fa-flag"></i>
+            <span>Laporankan</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('petugas.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>History</span>
+        </a>
+    </li>
+    {{-- end warga akses --}}
 
 
     <!-- Divider -->

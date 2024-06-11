@@ -34,17 +34,6 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Nama Perumahan</th>
-                                <th>Alamat</th>
-                                <th>Email</th>
-                                <th>Pengembang</th>
-                                <th>Created At</th>
-                                <th>Updated At</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             @foreach ($perumahans as $perumahan)
                                 <tr>
