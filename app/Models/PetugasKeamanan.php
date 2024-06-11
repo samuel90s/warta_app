@@ -12,6 +12,7 @@ class PetugasKeamanan extends Model
     {
         return $this->belongsTo(Perumahan::class, 'id_perumahan');
     }
+
 }
 
 
