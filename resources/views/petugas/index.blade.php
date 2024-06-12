@@ -16,7 +16,7 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Table Data Petugas Keamanan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Petugas Keamanan</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -24,7 +24,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Nama</th>
                                 <th scope="col">NIK</th>
+                                <th scope="col">Telepon</th>
+                                <th scope="col">Jenis Kelamin</th>
                                 <th scope="col">ID Perumahan</th>
                                 <th scope="col">SK Satpam</th>
                                 <th scope="col">Created At</th>
@@ -36,16 +39,26 @@
                             @foreach ($petugas as $p)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $p->nama }}</td>
                                     <td>{{ $p->nik }}</td>
-                                    <td>{{ $p->id_perumahan }}</td>
-                                    <td>{{ $p->sk_satpam }}</td>
+                                    <td>{{ $p->telepon }}</td>
+                                    <td>{{ $p->jenis_kelamin }}</td>
+                                    <td>{{ $p->perumahan->nama_perumahan ?? 'Tidak Terdaftar' }}</td>
+                                    <td>
+                                        @if ($p->sk_satpam)
+                                            <a href="{{ asset('storage/' . $p->sk_satpam) }}" target="_blank">Lihat
+                                                Dokumen</a>
+                                        @else
+                                            Tidak Ada
+                                        @endif
+                                    </td>
                                     <td>{{ $p->created_at }}</td>
                                     <td>{{ $p->updated_at }}</td>
                                     <td>
-                                        <a href="{{ route('petugas.edit', $p->id) }}"
+                                        <a href="{{ route('petugas.edit', $p->id_petugas_keamanan) }}"
                                             class="btn btn-primary btn-sm">Edit</a>
-                                        <form action="{{ route('petugas.destroy', $p->id) }}" method="POST"
-                                            class="d-inline">
+                                        <form action="{{ route('petugas.destroy', $p->id_petugas_keamanan) }}"
+                                            method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
@@ -59,6 +72,7 @@
             </div>
         </div>
     </div>
+
     @push('scripts')
         <script>
             $(document).ready(function() {

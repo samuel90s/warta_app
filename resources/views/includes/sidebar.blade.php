@@ -1,7 +1,7 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color: #b21e1e;">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('dashboard') }}">
         <div class="sidebar-brand-icon">
             <img src="{{ asset('images/logo_toa.png') }}" class="img-fluid" alt="Logo">
         </div>
@@ -13,27 +13,21 @@
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <div class="sidebar-heading">
+        Admin
+    </div>
+    <li class="nav-item active">
         <a class="nav-link" href="{{ route('admin') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Admin
-    </div>
     <!-- admin akses -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('perumahan.index') }}">
             <i class="fas fa-fw fa-house-user"></i>
             <span>Perumahan</span>
         </a>
     </li>
-
     <li class="nav-item">
         <a class="nav-link" href="{{ route('perumahan.index') }}">
             <i class="fas fa-fw fa-table"></i>
@@ -41,18 +35,25 @@
     </li>
     {{-- admin akses end --}}
 
+
+
     {{-- ketua RW akses --}}
+    <div class="sidebar-heading">
+        Ketua RW
+    </div>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('petugas.index') }}">
             <i class="fas fa-fw fa-address-card"></i>
             <span>Petugas Keamanan</span>
         </a>
     </li>
-
     {{-- end ketua rt akses --}}
 
 
     {{-- petugas keamanan akses --}}
+    <div class="sidebar-heading">
+        Petugas
+    </div>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('petugas.index') }}">
             <i class="fas fa-fw fa-flag"></i>

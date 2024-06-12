@@ -5,17 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response; // Ensure you're using the correct Response class
 
-class Rtrw
+class Rw
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
-     */
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {
@@ -24,9 +16,12 @@ class Rtrw
 
         $userRole = Auth::user()->role;
 
+        if ($userRole == 2) {
+            return $next($request);
+        }
+
+        // Redirect to appropriate route based on user's role
         switch ($userRole) {
-            case 2:
-                return $next($request);
             case 1:
                 return redirect()->route('admin');
             case 3:

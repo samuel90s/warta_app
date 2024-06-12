@@ -1,14 +1,10 @@
 <?php
-
-use App\Http\Controllers\cekController;
+use App\Http\Controllers\CekController;
 use App\Http\Controllers\PerumahanController;
 use App\Http\Controllers\PetugasKeamananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
-use App\Models\Perumahan;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Database\Schema\Blueprint;
-
 
 Route::get('/', function () {
     return view('index');
@@ -17,9 +13,10 @@ Route::get('/', function () {
 Route::get('admin', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified','admin'])->name('admin');
-Route::get('rtrw', function () {
-    return view('rtrw.index');
-})->middleware(['auth', 'verified','rtrw'])->name('rtrw');
+
+Route::get('rw', function () {
+    return view('rw.index');
+})->middleware(['auth', 'verified','rw'])->name('rw');
 
 Route::get('petugas', function () {
     return view('petugas.index');
@@ -34,14 +31,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 Route::get('/cek1', function() {
     return ('<h1>Mengecek</h1>');
 })->middleware(['auth', 'verified']);
 
-Route::get('/cek2', [cekController::class,'index'])->middleware(['auth',
-'verified']);
-require __DIR__.'/auth.php';
+Route::get('/cek2', [CekController::class,'index'])->middleware(['auth', 'verified']);
 
+require __DIR__.'/auth.php';
 
 Route::prefix('perumahan')->group(function () {
     Route::get('/', [PerumahanController::class, 'index'])->name('perumahan.index');
