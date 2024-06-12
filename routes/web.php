@@ -5,6 +5,7 @@ use App\Http\Controllers\PetugasKeamananController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\KetuaRwController;
 
 Route::get('/', function () {
     return view('index');
@@ -59,6 +60,15 @@ Route::prefix('petugas')->group(function () {
     Route::delete('{id_petugas_keamanan}', [PetugasKeamananController::class, 'destroy'])->name('petugas.destroy');
 });
 
+
+Route::prefix('ketuarw')->group(function () {
+    Route::get('', [KetuaRwController::class, 'index'])->name('ketuarw.index');
+    Route::get('create', [KetuaRwController::class, 'create'])->name('ketuarw.create');
+    Route::post('', [KetuaRwController::class, 'store'])->name('ketuarw.store');
+    Route::get('{id}/edit', [KetuaRwController::class, 'edit'])->name('ketuarw.edit');
+    Route::put('{id}', [KetuaRwController::class, 'update'])->name('ketuarw.update');
+    Route::delete('{id}', [KetuaRwController::class, 'destroy'])->name('ketuarw.destroy');
+});
 
 
 
