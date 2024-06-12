@@ -53,11 +53,13 @@ Route::prefix('petugas')->group(function () {
     Route::get('', [PetugasKeamananController::class, 'index'])->name('petugas.index');
     Route::get('create', [PetugasKeamananController::class, 'create'])->name('petugas.create');
     Route::post('', [PetugasKeamananController::class, 'store'])->name('petugas.store');
-    Route::get('{id}', [PetugasKeamananController::class, 'show'])->name('petugas.show'); // Define show route
-    Route::get('{id}/edit', [PetugasKeamananController::class, 'edit'])->name('petugas.edit');
-    Route::put('{id}', [PetugasKeamananController::class, 'update'])->name('petugas.update');
-    Route::delete('{id}', [PetugasKeamananController::class, 'destroy'])->name('petugas.destroy');
+    Route::get('{id_petugas_keamanan}', [PetugasKeamananController::class, 'show'])->name('petugas.show'); // Define show route
+    Route::get('{id_petugas_keamanan}/edit', [PetugasKeamananController::class, 'edit'])->name('petugas.edit');
+    Route::put('{id_petugas_keamanan}', [PetugasKeamananController::class, 'update'])->name('petugas.update');
+    Route::delete('{id_petugas_keamanan}', [PetugasKeamananController::class, 'destroy'])->name('petugas.destroy');
 });
+
+
 
 
 

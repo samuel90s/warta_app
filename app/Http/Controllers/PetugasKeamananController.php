@@ -67,42 +67,43 @@ class PetugasKeamananController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validation logic if needed
-        $petugas = PetugasKeamanan::findOrFail($id);
+{
+    // Validasi data yang dikirimkan oleh pengguna
+    $validatedData = $request->validate([
+        'nama' => 'required|string|max:255',
+        'alamat' => 'nullable|string|max:255',
+        'tanggal_lahir' => 'nullable|date',
+        'jenis_kelamin' => 'nullable|in:pria,wanita',
+        'telepon' => 'nullable|numeric',
+        'nik' => ['required', 'size:16', Rule::unique('petugas_keamanans')->ignore($id, 'id_petugas_keamanan')->whereNull('deleted_at')],
+        'id_perumahan' => 'required|exists:perumahans,id_perumahan',
+        'sk_satpam' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+        // tambahkan validasi lainnya sesuai kebutuhan
+    ]);
 
-        // Validasi data yang dikirimkan oleh pengguna
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'alamat' => 'nullable|string|max:255',
-            'tanggal_lahir' => 'nullable|date',
-            'jenis_kelamin' => 'nullable|in:pria,wanita',
-            'telepon' => 'nullable|numeric',
-            'nik' => ['required', 'size:16', Rule::unique('petugas_keamanans')->ignore($petugas->id)->whereNull('deleted_at')],
-            'id_perumahan' => 'required|exists:perumahans,id_perumahan',
-            'sk_satpam' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
-            // tambahkan validasi lainnya sesuai kebutuhan
-        ]);
+    // Ambil data petugas keamanan berdasarkan id
+    $petugas = PetugasKeamanan::findOrFail($id);
 
-        // Handle file upload if a new file is uploaded
-        if ($request->hasFile('sk_satpam')) {
-            // Delete the old file if it exists
-            if ($petugas->sk_satpam) {
-                Storage::delete('public/sk_satpam/' . $petugas->sk_satpam);
-            }
-
-            $file = $request->file('sk_satpam');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->storeAs('public/sk_satpam', $fileName);
-            $validatedData['sk_satpam'] = $fileName; // Save the file name to the database
+    // Handle file upload if a new file is uploaded
+    if ($request->hasFile('sk_satpam')) {
+        // Delete the old file if it exists
+        if ($petugas->sk_satpam) {
+            Storage::delete('public/sk_satpam/' . $petugas->sk_satpam);
         }
 
-        // Update the petugas record
-        $petugas->update($validatedData);
-
-        // Redirect ke halaman index atau ke halaman lain yang sesuai
-        return redirect()->route('petugas.index')->with('success', 'Petugas keamanan berhasil diperbarui.');
+        $file = $request->file('sk_satpam');
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $file->storeAs('public/sk_satpam', $fileName);
+        $validatedData['sk_satpam'] = $fileName; // Save the file name to the database
     }
+
+    // Update data petugas keamanan
+    $petugas->update($validatedData);
+
+    // Redirect ke halaman index atau ke halaman lain yang sesuai
+    return redirect()->route('petugas.index')->with('success', 'Petugas keamanan berhasil diperbarui.');
+}
+
 
 
     public function destroy($id)

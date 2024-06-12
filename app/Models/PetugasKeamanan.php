@@ -9,6 +9,8 @@ class PetugasKeamanan extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'id_petugas_keamanan'; // Menentukan kunci utama yang benar
+
     protected $fillable = [
         'nama',
         'alamat',
@@ -24,8 +26,4 @@ class PetugasKeamanan extends Model
     {
         return $this->belongsTo(Perumahan::class, 'id_perumahan');
     }
-
-
 }
-
-
