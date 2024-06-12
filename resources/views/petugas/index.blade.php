@@ -46,7 +46,7 @@
                                     <td>{{ $p->perumahan->nama_perumahan ?? 'Tidak Terdaftar' }}</td>
                                     <td>
                                         @if ($p->sk_satpam)
-                                            <a href="{{ asset('storage/' . $p->sk_satpam) }}" target="_blank">Lihat
+                                            <a href="{{ Storage::url('sk_satpam/' . $p->sk_satpam) }}" target="_blank">Lihat
                                                 Dokumen</a>
                                         @else
                                             Tidak Ada

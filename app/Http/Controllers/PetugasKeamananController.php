@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PetugasKeamanan;
 use App\Models\Perumahan;
 use Illuminate\Validation\Rule;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PetugasKeamananController extends Controller
 {
@@ -26,11 +26,24 @@ class PetugasKeamananController extends Controller
     {
         // Validasi data yang dikirimkan oleh pengguna
         $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
+            'jenis_kelamin' => 'nullable|in:pria,wanita',
+            'telepon' => 'nullable|numeric',
             'nik' => ['required', 'size:16', Rule::unique('petugas_keamanans')->whereNull('deleted_at')],
             'id_perumahan' => 'required|exists:perumahans,id_perumahan',
-            'sk_satpam' => 'nullable|string|max:255',
+            'sk_satpam' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             // tambahkan validasi lainnya sesuai kebutuhan
         ]);
+
+        // Handle file upload
+        if ($request->hasFile('sk_satpam')) {
+            $file = $request->file('sk_satpam');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('sk_satpam', $fileName, 'public');
+            $validatedData['sk_satpam'] = $fileName; // Save the file name to the database
+        }
 
         // Lakukan penyimpanan data ke database
         PetugasKeamanan::create($validatedData);
@@ -57,9 +70,40 @@ class PetugasKeamananController extends Controller
     {
         // Validation logic if needed
         $petugas = PetugasKeamanan::findOrFail($id);
-        $petugas->update($request->all());
-        return redirect()->route('petugas.index');
+
+        // Validasi data yang dikirimkan oleh pengguna
+        $validatedData = $request->validate([
+            'nama' => 'required|string|max:255',
+            'alamat' => 'nullable|string|max:255',
+            'tanggal_lahir' => 'nullable|date',
+            'jenis_kelamin' => 'nullable|in:pria,wanita',
+            'telepon' => 'nullable|numeric',
+            'nik' => ['required', 'size:16', Rule::unique('petugas_keamanans')->ignore($petugas->id)->whereNull('deleted_at')],
+            'id_perumahan' => 'required|exists:perumahans,id_perumahan',
+            'sk_satpam' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
+            // tambahkan validasi lainnya sesuai kebutuhan
+        ]);
+
+        // Handle file upload if a new file is uploaded
+        if ($request->hasFile('sk_satpam')) {
+            // Delete the old file if it exists
+            if ($petugas->sk_satpam) {
+                Storage::delete('public/sk_satpam/' . $petugas->sk_satpam);
+            }
+
+            $file = $request->file('sk_satpam');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/sk_satpam', $fileName);
+            $validatedData['sk_satpam'] = $fileName; // Save the file name to the database
+        }
+
+        // Update the petugas record
+        $petugas->update($validatedData);
+
+        // Redirect ke halaman index atau ke halaman lain yang sesuai
+        return redirect()->route('petugas.index')->with('success', 'Petugas keamanan berhasil diperbarui.');
     }
+
 
     public function destroy($id)
     {

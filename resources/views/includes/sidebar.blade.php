@@ -12,72 +12,74 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-    <!-- Nav Item - Dashboard -->
-    <div class="sidebar-heading">
-        Admin
-    </div>
-    <li class="nav-item active">
-        <a class="nav-link" href="{{ route('admin') }}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
-    <!-- admin akses -->
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('perumahan.index') }}">
-            <i class="fas fa-fw fa-house-user"></i>
-            <span>Perumahan</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('perumahan.index') }}">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Ketua RW</span></a>
-    </li>
-    {{-- admin akses end --}}
 
+    <!-- Admin Sidebar -->
+    @if ($userRole == 1)
+        <div class="sidebar-heading">
+            Admin
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('perumahan.index') }}">
+                <i class="fas fa-fw fa-house-user"></i>
+                <span>Perumahan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('perumahan.index') }}">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Ketua RW</span></a>
+        </li>
+    @endif
 
+    <!-- Ketua RW Sidebar -->
+    @if ($userRole == 2)
+        <div class="sidebar-heading">
+            Ketua RW
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('petugas.index') }}">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>Petugas Keamanan</span>
+            </a>
+        </li>
+    @endif
 
-    {{-- ketua RW akses --}}
-    <div class="sidebar-heading">
-        Ketua RW
-    </div>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('petugas.index') }}">
-            <i class="fas fa-fw fa-address-card"></i>
-            <span>Petugas Keamanan</span>
-        </a>
-    </li>
-    {{-- end ketua rt akses --}}
+    <!-- Petugas Keamanan Sidebar -->
+    @if ($userRole == 3)
+        <div class="sidebar-heading">
+            Petugas Keamanan
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('petugas.index') }}">
+                <i class="fas fa-fw fa-flag"></i>
+                <span>Laporan Warga</span>
+            </a>
+        </li>
+    @endif
 
-
-    {{-- petugas keamanan akses --}}
-    <div class="sidebar-heading">
-        Petugas
-    </div>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('petugas.index') }}">
-            <i class="fas fa-fw fa-flag"></i>
-            <span>Laporan Warga</span>
-        </a>
-    </li>
-
-    {{-- end petugas keamanan akses --}}
-    {{-- start warga akses --}}
-
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('petugas.index') }}">
-            <i class="fas fa-fw fa-flag"></i>
-            <span>Laporankan</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('petugas.index') }}">
-            <i class="fas fa-fw fa-book"></i>
-            <span>History</span>
-        </a>
-    </li>
-    {{-- end warga akses --}}
-
+    <!-- Warga Sidebar -->
+    @if ($userRole == 4)
+        <div class="sidebar-heading">
+            Warga
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('petugas.index') }}">
+                <i class="fas fa-fw fa-flag"></i>
+                <span>Laporankan</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('petugas.index') }}">
+                <i class="fas fa-fw fa-book"></i>
+                <span>History</span>
+            </a>
+        </li>
+    @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -88,13 +90,3 @@
     </div>
 
 </ul>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Add "active" class to the clicked sidebar item
-        $('.nav-item').click(function() {
-            $('.nav-item').removeClass('active');
-            $(this).addClass('active');
-        });
-    });
-</script>
