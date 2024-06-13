@@ -1,7 +1,10 @@
+// app/Http/Kernel.php
+
 protected $routeMiddleware = [
-    // Other middlewares
+    // Other middleware entries
     'admin' => \App\Http\Middleware\Admin::class,
+    'ketuarw' => \App\Http\Middleware\KetuaRw::class,
     'petugas' => \App\Http\Middleware\Petugas::class,
-    'rw' => \App\Http\Middleware\Rw::class,
     'warga' => \App\Http\Middleware\Warga::class,
+    'redirectIfAuthenticated' => \App\Http\Middleware\RedirectIfAuthenticated::class,
 ];

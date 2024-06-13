@@ -16,18 +16,18 @@ class Warga
 
         $userRole = Auth::user()->role;
 
-        if ($userRole == 4) {
+        if ($userRole == 4) { // Warga
             return $next($request);
         }
 
         // Redirect to appropriate route based on user's role
         switch ($userRole) {
             case 1:
-                return redirect()->route('admin');
+                return redirect()->route('admin.index');
             case 2:
-                return redirect()->route('rw');
+                return redirect()->route('ketuarw.index');
             case 3:
-                return redirect()->route('petugas');
+                return redirect()->route('petugas.index');
             default:
                 return redirect()->route('login'); // Handle unexpected roles
         }

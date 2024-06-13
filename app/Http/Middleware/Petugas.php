@@ -16,16 +16,16 @@ class Petugas
 
         $userRole = Auth::user()->role;
 
-        if ($userRole == 3) {
+        if ($userRole == 3) { // Petugas
             return $next($request);
         }
 
         // Redirect to appropriate route based on user's role
         switch ($userRole) {
             case 1:
-                return redirect()->route('admin');
+                return redirect()->route('admin.index');
             case 2:
-                return redirect()->route('rw');
+                return redirect()->route('ketuarw.index');
             case 4:
                 return redirect()->route('dashboard');
             default:

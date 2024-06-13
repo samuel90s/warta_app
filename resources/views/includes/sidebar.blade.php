@@ -30,7 +30,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('perumahan.index') }}">
+            <a class="nav-link" href="{{ route('ketuarw.index') }}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Ketua RW</span></a>
         </li>

@@ -16,18 +16,18 @@ class Admin
 
         $userRole = Auth::user()->role;
 
-        if ($userRole == 1) {
-            return $next($request);
+        if ($userRole == 1) { // Admin
+            return $next($request); // Lanjutkan ke rute yang diminta jika admin
         }
 
         // Redirect to appropriate route based on user's role
         switch ($userRole) {
             case 2:
-                return redirect()->route('rw');
+                return redirect()->route('ketuarw.index'); // Ketua RW
             case 3:
-                return redirect()->route('petugas');
+                return redirect()->route('petugas.index'); // Petugas
             case 4:
-                return redirect()->route('dashboard');
+                return redirect()->route('dashboard'); // Warga
             default:
                 return redirect()->route('login'); // Handle unexpected roles
         }

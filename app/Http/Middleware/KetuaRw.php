@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Rw
+class KetuaRw
 {
     public function handle(Request $request, Closure $next)
     {
@@ -16,16 +16,16 @@ class Rw
 
         $userRole = Auth::user()->role;
 
-        if ($userRole == 2) {
+        if ($userRole == 2) { // Ketua RW
             return $next($request);
         }
 
-        // Redirect to appropriate route based on user's role
+        // Jika bukan Ketua RW, redirect sesuai role
         switch ($userRole) {
             case 1:
-                return redirect()->route('admin');
+                return redirect()->route('admin.index');
             case 3:
-                return redirect()->route('petugas');
+                return redirect()->route('petugas.index');
             case 4:
                 return redirect()->route('dashboard');
             default:
