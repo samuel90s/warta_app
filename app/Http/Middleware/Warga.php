@@ -29,7 +29,7 @@ class Warga
             case 3:
                 return redirect()->route('petugas.index');
             default:
-                return redirect()->route('login'); // Handle unexpected roles
+                return redirect()->route('login');
         }
     }
 }

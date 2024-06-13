@@ -19,7 +19,6 @@ class KetuaRw
         if ($userRole == 2) { // Ketua RW
             return $next($request);
         }
-
         // Jika bukan Ketua RW, redirect sesuai role
         switch ($userRole) {
             case 1:
