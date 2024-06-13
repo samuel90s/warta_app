@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($ketuaRw as $ketuaRw)
+                            {{-- @foreach ($ketuaRw as $ketuaRw)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $ketuaRw->nama_ketua_rw }}</td>
@@ -45,7 +45,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @endforeach --}}
                         </tbody>
                     </table>
                 </div>
